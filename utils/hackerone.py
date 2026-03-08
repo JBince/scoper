@@ -1,16 +1,42 @@
 #! python3
 
 import requests
+import os
+from utils.bbplatform import Platform
 
 """
 TODO: 
-@ Add authorization checks to stop on
+@ Add authorization checks to stop on failure
+@ Add checks to ensure only unique lines are added to files
 """
-class hackerone:
+class HackerOne(Platform):
+    # File Path Constants
+    DOMAINS_FILE = "data/h1_domains.txt"
+    WILDCARDS_FILE = "data/h1_wildcards.txt"
+
     def __init__(self, username, api_token):
+        # Ensure that, regardless of what programs we scope, it double checks the directory setup
+        Platform.__init__(self)
         self.username = username
         self.api_token = api_token
         self.program_handles = []
+        
+        # Create Hackerone domain file if it doesn't exist
+        if os.path.isfile(self.DOMAINS_FILE):
+            pass
+        else:
+            print("[+] Creating h1_domains.txt")
+            with open(self.DOMAINS_FILE, 'w'):
+                pass
+
+        # Create wildcards file if it doesn't exist
+        if os.path.isfile(self.WILDCARDS_FILE):
+            pass
+        else:
+            print('[+] Creating h1_wildcards.txt')
+            with open(self.WILDCARDS_FILE, 'w'):
+                pass
+
 
     def get_programs(self):
         n = 1
@@ -34,10 +60,10 @@ class hackerone:
 
     def get_and_write_program_scopes(self):
         # Open file handlers for later writing
-        h1_domains_file = open("data/h1_domains.txt", "w")
-        h1_wildcard_file = open("data/h1_wildcards.txt", "w")
-        all_domains_file = open("data/all_domains.txt", "w")
-        all_wildcard_file = open("data/all_wildcards.txt", "w")
+        h1_domains_file = open(self.DOMAINS_FILE, "w")
+        h1_wildcard_file = open(self.WILDCARDS_FILE, "w")
+        all_domains_file = open(self.ALL_DOMAINS_FILE, "w")
+        all_wildcard_file = open(self.ALL_WILDCARDS_FILE, "w")
 
         # Iterate over programs
         for program in self.program_handles:
@@ -63,15 +89,11 @@ class hackerone:
                                 h1_wildcard_file.write(
                                     f'{program}: {asset["asset_identifier"]}\n'
                                 )
-                                # Write to all wildcard file
-                                all_wildcard_file.write(f'{asset["asset_identifier"]}\n')
                             case "URL":
                                 # Write to H1 Domains File
                                 h1_domains_file.write(
                                     f'{program}: {asset["asset_identifier"]}\n'
                                 )
-                                # Write to all domains file
-                                all_domains_file.write(f'{asset["asset_identifier"]}\n')
                             case _:
                                 pass
                     except:
