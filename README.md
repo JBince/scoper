@@ -12,6 +12,8 @@ Scoper is capable of retrieving both public and private programs for a user and 
 
 ## Usage
 
+`pip install -r requirements.txt`
+
 ```
 usage: Scoper [-h] [-p {h1,bc,ywh,intig,all} [{h1,bc,ywh,intig,all} ...]]
 
