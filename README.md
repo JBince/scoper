@@ -38,7 +38,7 @@ Before you begin, copy the .env.example file to .env and define the environment 
 The HackerOne section uses their provided researcher API. Their API uses HTTP Basic authentication and expects your HackerOne username and API token. You can find more information on creating an API token here: [HackerOne: API Token](https://docs.hackerone.com/en/articles/8410331-api-token)
 
 ### _For BugCrowd_
-As BugCrowd does not provide researchers with an API, this section uses a bit of HTML and JSON parsing. The `BUGCROWD_SESSION` variable value is the value of the `_bugcrowd_value` cookie when authenticated to the platform.
+As BugCrowd does not provide researchers with an API, this section uses a bit of HTML and JSON parsing. The `BUGCROWD_SESSION` variable value is the value of the `_bugcrowd_session` cookie when authenticated to the platform.
 
 ### _For Intigriti_
 Intigriti keeps it simple and provides researchers with an API token to interact with the platform. More information on creating an API token can be found here [Intigriti Researcher API: Authentication](https://intigriti-researcher-api.readme.io/reference/authentication)
