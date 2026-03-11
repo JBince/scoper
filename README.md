@@ -8,7 +8,7 @@ Scoper is capable of retrieving both public and private programs for a user and 
 - Intigriti
 - YesWeHack
 
-Tested on Python 3.14.3
+Tested on Python 3.13
 
 # Getting Started
 
